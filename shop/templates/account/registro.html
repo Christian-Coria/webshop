@@ -1,50 +1,44 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Registro</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    </head>
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2>Registro</h2>
-                    <!--Formularo-->
-                    <form method="POST">
-                        {% csrf_token %}
-        <!--            <div class="form-group">
-                            {{ form.username.label_tag }}
-                            {{ form.username }}
-                        </div>
+{% block content %}   
+<div class="col">
+    <h2>Registro</h2>
+    <!--Formularo-->
+    <form method="POST">
+        {% csrf_token %}
+<!--            <div class="form-group">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
 
-                        <div class="form-group">
-                            {{ form.email.label_tag }}
-                            {{ form.email }}
-                        </div>
+        <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+        </div>
 
-                        <div class="form-group">
-                            {{ form.password.label_tag }}
-                            {{ form.password }}
-                        </div>
-        -->                 
-                          {# Pintaremos formularios con un ciclo For para reducir lineas de codigo (esto solo si se decea visualizar todos los campos #}
-                    
-                        {% for field in form %}
-                             <div class="form-group">
-                                 {{ field.label_tag }}
-                                     {{ field }}
+        <div class="form-group">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+        </div>
+-->                 
+          {# Pintaremos formularios con un ciclo For para reducir lineas de codigo (esto solo si se decea visualizar todos los campos #}
+    
+        {% for field in form %}
+             <div class="form-group">
+                 {{ field.label_tag }}
+                     {{ field }}
 
-                            {% if field.errors %}
-                             {{ field.errors }} {# pintamos si hay un error en la validacion como el repetido nombre de usuario#}
-                            {% endif %}
-                        {% endfor %}
+            {% if field.errors %}
+             {{ field.errors }} {# pintamos si hay un error en la validacion como el repetido nombre de usuario#}
+            {% endif %}
+        {% endfor %}
 
-                        
-                      <button type="submit" class="btn btn-primary">Registro</button>
-                    </form>
-                        
-        <script src="" async defer></script>
-    </body>
-</html>
+        
+      <button type="submit" class="btn btn-primary">Registro</button>
+    </form>
+</div>
+{% endblock %}
+
+
+        
+       

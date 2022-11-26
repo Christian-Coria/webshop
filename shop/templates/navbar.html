@@ -1,0 +1,42 @@
+<!-- navegacion estilo bootsrap-->
+
+{% url 'login' as login %}   {# creando la variable condicionamos la clase active #}
+{% url 'registro' as registro %}
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+ <a href="" class="navbar-brand">Store</a>
+
+    <button type"button" name="button" class="navbar-toggler navbar-toggler-right" data-toggler="collpse" data-target="#navb">
+        <spam class="navbar-toggler-icon"></spam> {#este es el icono#}
+    </button>    {#este boton solo aparece si la pantalla es pequeña#}
+
+    <div id="navb" class="navbar-collapse collapse hide">
+
+        <ul class="nav navbar-nav ml-auto">
+
+            {% if user.is_autenticated %}
+                <li class="navbar-item">
+                    <a href="{% url 'logout' %}" class="nav-link">
+                        <spam class="fa-solid fa-right-from-bracket"></spam>
+                        Logout</a>
+                </li>
+
+            {% else %}
+{# la clase active indica al usuario donde esta utilizando condiciones if#}
+                <li class="navbar-item {% if request.path == login %}active{% endif %}">  
+                    <a href="{{ login }}" class="nav-link">
+                        <spam class="fas fa-user"></spam> {# icono de user #}
+                        Login</a>
+                </li>
+
+                <li class="navbar-item {% if request.path == registro %}active{% endif %}">">
+                    <a href="{{ registro }}" class="nav-link">
+                        <spam class="fas fa-user-plus"></spam>
+                        Registro</a>
+                </li>
+            {% endif %}
+            
+        </ul>
+    </div>
+
+</nav>

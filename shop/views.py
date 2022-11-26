@@ -21,6 +21,8 @@ def index(request):
           })
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('index')  # esta validacion es para que el usuario no pueda ingresar desde la barra sin loguearse 
     
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -39,11 +41,16 @@ def login_view(request):
     })
 
 def logout_view(request):
+
+
     logout(request)
     messages.success(request, 'Deslogueado Exitosamente')
     return redirect('login')
 
 def registro(request):
+    if request.user.is_authenticated:
+        return redirect('index')  # esta validacion es para que el usuario no pueda ingresar desde la barra sin loguearse 
+
     form = RegisterForm(request.POST or None) #le decimos que genere un formulario con los datos recibidos o si no se recibe nada vacio (None)
 
     if request.method == 'POST' and form.is_valid() :                    #concluimos que el formulario envio la informacion y validamos 
