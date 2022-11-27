@@ -5,20 +5,24 @@ from django.contrib.auth import login, logout
 from django.contrib import messages
 from shop.forms import RegisterForm
 from django.contrib.auth.models import User
+from products.models import Product
 
 def index(request):
 
+    products = Product.objects.all().order_by('-id') #ordenamos la lista de modo descendente
+
     return render(request,'index.html', { 
             'message': 'Listado de Productos',
-            'titulo' : 'EnLinea',
-            'productos' : [
-                {'titulo': 'Modulo A51',' precio': '$15000', 'stock':True},
-                {'titulo': 'Modulo j7 16',' precio': '$9500', 'stock':True},
-                {'titulo': 'Modulo a01',' precio': '$8000', 'stock':False},
-           ]
+            'titulo' : 'Productos',
+            'products' : products,
+            })
+                # {'titulo': 'Modulo A51',' precio': '$15000', 'stock':True},
+                # {'titulo': 'Modulo j7 16',' precio': '$9500', 'stock':True},
+                # {'titulo': 'Modulo a01',' precio': '$8000', 'stock':False},
+         
 
           
-          })
+          
 
 def login_view(request):
     if request.user.is_authenticated:
