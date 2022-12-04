@@ -1,0 +1,6 @@
+<div class="row">     {# introducimos el for dentro de row para mostrar cajas una al lado de la otra#}
+    {% for product in product_list %}  {# se puede utilizar objets_list o products #}
+        <div class="col-3 mt-5">
+            {% include 'products/snippets/product.html' %}
+        </div>
+    {% endfor %}

@@ -4,25 +4,27 @@
 
      
         <div class="col">
-                
-                <h1>{{ message }}</h1>
-                
-            <ul class="list-group">
-                {% for product in products %}  {# se puede utilizar objets_list o product_list #}
-                    <li class="list-group-item">
+               
+            <h4 class="text-center">{{ message }}</h4>
+            {% include 'products/snippets/search.html' %}
+                <div class="row">
+                    {% include 'products/snippets/product_list.html' %}
+
+                    <!--<li class="list-group-item">
                         {{ product.title }}
                     
                         <!--{% if producto.stock %}
                         <span class="text-success">- Disponible</span>
                         {% else %}
                         <span class="text-danger">- Sin Stock</span>
-                        {% endif %}-->
+                        {% endif %}
                         <span class="text-success">{{ product.price }}</span>
-                    </li>
-                {% endfor %}
+                    </li>-->
+                   
+                </div>
             </ul>
             {#<img src="{% static 'imagenes/a51.jfif' %}" alt="Modulo A51">#}
-
+            
         </div>
     
 {% endblock %}

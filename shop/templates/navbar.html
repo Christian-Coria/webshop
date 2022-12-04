@@ -2,22 +2,30 @@
 
 {% url 'login' as login %}   {# creando la variable condicionamos la clase active #}
 {% url 'registro' as registro %}
+{% url 'carts:cart' as cart %}
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
- <a href="" class="navbar-brand">Store</a>
+ <a href="{% url 'shop:index' %}" class="navbar-brand">Store</a>    {# habilitamos el logo pagina y su link #}
 
-    <button type"button" name="button" class="navbar-toggler navbar-toggler-right" data-toggler="collpse" data-target="#navb">
-        <spam class="navbar-toggler-icon"></spam> {#este es el icono#}
+    <button type="button" name="button" class="navbar-toggler navbar-toggler-right" data-toggler="collapse" data-target="#navb">
+        <span class="navbar-toggler-icon"></span> {#este es el icono#}
     </button>    {#este boton solo aparece si la pantalla es pequeña#}
 
     <div id="navb" class="navbar-collapse collapse hide">
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item"> {% if request.path == cart%}>active{% endif %}
+                <a class="nav-link" href="{{ cart }}">
+                    MI Cart<span class="fas fa-shopping-cart"></span></a>
+            </li>
+        </ul>
 
+     
         <ul class="nav navbar-nav ml-auto">
 
             {% if user.is_autenticated %}
                 <li class="navbar-item">
                     <a href="{% url 'logout' %}" class="nav-link">
-                        <spam class="fa-solid fa-right-from-bracket"></spam>
+                        <span class="fa-solid fa-right-from-bracket"></span>
                         Logout</a>
                 </li>
 
@@ -25,13 +33,13 @@
 {# la clase active indica al usuario donde esta utilizando condiciones if#}
                 <li class="navbar-item {% if request.path == login %}active{% endif %}">  
                     <a href="{{ login }}" class="nav-link">
-                        <spam class="fas fa-user"></spam> {# icono de user #}
+                        <span class="fas fa-user"></span> {# icono de user #}
                         Login</a>
                 </li>
 
                 <li class="navbar-item {% if request.path == registro %}active{% endif %}">">
                     <a href="{{ registro }}" class="nav-link">
-                        <spam class="fas fa-user-plus"></spam>
+                        <span class="fas fa-user-plus"></span>
                         Registro</a>
                 </li>
 

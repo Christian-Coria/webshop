@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-3">
+    {% if product.image %}
+        <img src="{{ product.image.url }}"alt="Imagen del Producto"  width="200" height="300px">
+    {% endif%}
+</div>
+    <div class="col">
+        <div class="h2">{{ product.title }}</div>
+        <div class="h5 front-weight-bold">
+        Precio: <span class="text-danger">{{ product.price }}</spam>
+    </div>        
+    <div class="">
+        <p>{{ product.description }}</p>
+    </div>
+    <div class="">
+        {% include 'carts/snippets/add.html' %}
+    </div>
+
+ <!--<div class="p-3 mb-2 bg-dark text-white">
+    <ul class="list-grup-item">
+        
+           <li class='list-grup-item'> {{object.title}} </li>
+           <li class='list-grup-item'> {{object.price}} </li>
+          
+
+    </ul> -->
+
+{% endblock %}

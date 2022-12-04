@@ -4,8 +4,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from shop.forms import RegisterForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 from products.models import Product
+#from users.models import User #-- Cambiamos las referencias al modelo
 
 def index(request):
 

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-
+#from users.models import User -- Cambiamos las referencias al modelo
 
 class RegisterForm(forms.Form):      #Estilos en forms:
     username = forms.CharField(required=True,

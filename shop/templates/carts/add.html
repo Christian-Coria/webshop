@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load product_extras %} {# importamos el archivo de filters #}
+{% block content %}
+    <div class="col-3">
+        {% if product.image %}
+            <img src="{{ product.image.url }}"alt="Imagen del Producto" alt="width=200" height="200">
+        {% endif %}
+    </div>
+    <div class="col">
+        <div class="h3 font-weight-bold text-success">
+            Producto Agregado al carrito de Compras
+        </div>
+        <div class="">
+            <a href="{% url 'products:product' product.slug %}">
+                {{ product.title }}
+            </a>
+        </div>
+        <div class="font-weight-bold text-danger">
+            {{ product.price | price_format }} {# enlazamos el filterde product_extras #}
+    </div>
+{% endblock %}

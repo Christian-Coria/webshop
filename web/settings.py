@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
     'products.apps.ProductsConfig',
+    'categories.apps.CategoriesConfig',
+    'users.apps.UsersConfig',
+    'carts.apps.CartsConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -52,6 +56,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'web.urls'
+
+#AUTH_USER_MODEL = 'users.User'  #asi le indicamos a Django que vamos usar el model User creado y no el de Django y ahora cambiamos todas las referencias al modelo de django
 
 TEMPLATES = [
     {
@@ -78,7 +84,7 @@ WSGI_APPLICATION = 'web.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
     }
 }
 
@@ -125,6 +131,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
