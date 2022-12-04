@@ -2,6 +2,7 @@ from django.shortcuts import render
 from carts.models import Cart
 from carts.utils import get_or_create_cart
 from products.models import Product
+from django.shortcuts import redirect
 
 
 def cart(request):
@@ -44,3 +45,11 @@ def add(request):
         'product' : product }
         
         )
+
+def remove(request):
+    cart = get_or_create_cart(request) 
+    product = Product.objects.get(pk=request.POST.get('product_id'))
+    
+    cart.products.remove(product) #asi obtenemos el carro luego el producto y en esta linea eliminamos la relacion entre ellos
+
+    return redirect('carts:cart')
