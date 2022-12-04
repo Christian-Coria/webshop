@@ -3,7 +3,7 @@ from carts.models import Cart
 from carts.utils import get_or_create_cart
 from products.models import Product
 from django.shortcuts import redirect
-
+from django.shortcuts import get_object_or_404
 
 def cart(request):
     '''crear una session:
@@ -37,7 +37,7 @@ def cart(request):
 
 def add(request):
     cart = get_or_create_cart(request)   #obtenemos el carrito 
-    product = Product.objects.get(pk=request.POST.get('product_id')) #obtenemos el producto
+    product = get_object_or_404(Product, pk=request.POST.get('product_id')) #Product.objects.get(pk=request.POST.get('product_id')) #obtenemos el producto
 
     cart.products.add(product) #agregamos el producto al carrito
 
@@ -47,8 +47,10 @@ def add(request):
         )
 
 def remove(request):
+    # get_object_or_404 #esta funcion nos permite obtener un objeto apartir de una excepcion y lanzara el error 404
     cart = get_or_create_cart(request) 
-    product = Product.objects.get(pk=request.POST.get('product_id'))
+    product = get_object_or_404(Product, pk=request.POST.get('product_id'))
+    #product = Product.objects.get(pk=request.POST.get('product_id'))
     
     cart.products.remove(product) #asi obtenemos el carro luego el producto y en esta linea eliminamos la relacion entre ellos
 
