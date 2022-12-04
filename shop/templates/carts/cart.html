@@ -1,5 +1,54 @@
 {% extends 'base.html' %}
+{% load product_extras %}
 
 {% block content %}
-<h2>Carrito de Compras</h2>
+
+{% if cart.products.exists %} {# osea si el carrito de compras existe #}
+<div class="col-8">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in cart.products.all %}
+                <tr>
+                    <th>{{ forloop.counter }}</th> {# podemos utilizar este objeto siempre que estemos dentro de un for #}
+                    <th> 
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}"alt="Imagen del Producto" width="60" height="60">
+                        {% endif %} 
+                    </th>  
+                    <th>
+                        <a href="{% url 'products:product' product.slug %}">{{ product.title }}</a>  {# mostramos el nombre del producto #}
+                    </th>
+                    <th>1</th>
+                    <th>
+                        <span class="font-weight-bold text-danger">{{ product.price | price_format }}</span>
+                    </th>
+                <tr>
+            {% endfor %}
+    </table> 
+</div>
+{% else %}
+    <div class="col">
+        <p class="h3">Tu Carrito esta vacio.</p>
+        {#<a href={% url 'index' %}>Seguir Comprando</a>         no anda?#}
+    </div>
+{% endif%}
+
+
+
+<div class="col">
+
+</div>
+
+
+
+
 {% endblock %}

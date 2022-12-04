@@ -12,6 +12,13 @@
     </button>    {#este boton solo aparece si la pantalla es pequeña#}
 
     <div id="navb" class="navbar-collapse collapse hide">
+
+        <ul class="nav navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'carts:cart' %}">Mi carrito<span class="fas fa-shopping-cart"></span></a>
+            </li>
+        </ul>
+
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item"> {% if request.path == cart%}>active{% endif %}
                 <a class="nav-link" href="{{ cart }}">

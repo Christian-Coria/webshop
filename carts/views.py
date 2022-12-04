@@ -29,7 +29,9 @@ def cart(request):
     
     cart = get_or_create_cart(request)
 
-    return render(request, 'carts/cart.html', {})
+    return render(request, 'carts/cart.html', {
+        'cart' : cart
+    })
 
 
 def add(request):
@@ -38,4 +40,7 @@ def add(request):
 
     cart.products.add(product) #agregamos el producto al carrito
 
-    return render(request, 'carts/add.html', { 'product' : product })
+    return render(request, 'carts/add.html', { 
+        'product' : product }
+        
+        )
